@@ -48,8 +48,7 @@
                     aria-expanded="false"> <img class="img-xs rounded-circle"
                         src="{{ asset('admin/assets/imgs/people/avatar2.jpg') }}" alt="User"></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
-                    <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
-                        Profile</a>
+                    <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>{{ auth()->check() ? auth()->user()->name : '' }}</a>
                     <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
                         Settings</a>
                     <a class="dropdown-item" href="#"><i
@@ -58,8 +57,13 @@
                     <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
                         center</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#"><i
+                    <a class="dropdown-item text-danger" onclick="$('#logoutForm').submit()" href="#" ><i
                             class="material-icons md-exit_to_app"></i>Logout</a>
+
+                    <form class="d-none" id="logoutForm" method="POST" action="{{ route("admin.logout") }}">
+                        @csrf
+
+                    </form>
                 </div>
             </li>
         </ul>

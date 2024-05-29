@@ -39,6 +39,9 @@ class ProductController extends Controller
         Product::create($data);
 
 
+        
+
+
         //    $name = $request->image->getClientName();
 
         return redirect()->route('products.index');

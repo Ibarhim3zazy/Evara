@@ -19,7 +19,8 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->word,
             'desc' => fake()->sentence,
-            'image' => fake()->imageUrl()
+            'image' => fake()->imageUrl(),
+            'category_id' => 1
         ];
     }
 }
