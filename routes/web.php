@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,7 @@ Route::prefix('portal')->group(function(){
 
 
     Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
 });
 
 

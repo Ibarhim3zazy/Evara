@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,8 +18,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
+        $categories = Category::all();
 
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact(['products', 'categories']));
     }
 
     /**
@@ -26,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -37,10 +40,6 @@ class ProductController extends Controller
         $data = $request->validated();
         $data['image'] = $request->image->store('products');
         Product::create($data);
-
-
-        
-
 
         //    $name = $request->image->getClientName();
 
@@ -61,7 +60,8 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.products.edit', compact(['product', 'categories']));
     }
 
     /**

@@ -20,10 +20,8 @@
                     <span class="text">Products</span>
                 </a>
                 <div class="submenu">
-                    <a href="page-products-list.html">Product List</a>
-                    <a href="page-products-grid.html">Product grid</a>
-                    <a href="page-products-grid-2.html">Product grid 2</a>
-                    <a href="page-categories.html">Categories</a>
+                    <a href="{{ route('products.index') }}">Product List</a>
+                    <a href="{{ route('categories.index') }}">Categories</a>
                 </div>
             </li>
             <li class="menu-item has-submenu">
@@ -53,10 +51,7 @@
                     <span class="text">Add product</span>
                 </a>
                 <div class="submenu">
-                    <a href="page-form-product-1.html">Add product 1</a>
-                    <a href="page-form-product-2.html">Add product 2</a>
-                    <a href="page-form-product-3.html">Add product 3</a>
-                    <a href="page-form-product-4.html">Add product 4</a>
+                    <a href="{{ route('products.create') }}">Add product</a>
                 </div>
             </li>
             <li class="menu-item has-submenu">
