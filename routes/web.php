@@ -24,6 +24,8 @@ Route::prefix('portal')->group(function(){
     Route::middleware('admin')->group(function(){
         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
+        Route::resource('products', ProductController::class);
+        Route::resource('categories', CategoryController::class);
     });
 
     Route::get('login', [AuthController::class, 'loginPage'])->name('admin.login');
@@ -32,15 +34,6 @@ Route::prefix('portal')->group(function(){
     Route::get('register', [AuthController::class, 'registerPage'])->name('admin.register');
     Route::post('register-user', [AuthController::class, 'register'])->name('admin.register_user');
     
-
-
-
-
-
-
-
-    Route::resource('products', ProductController::class);
-    Route::resource('categories', CategoryController::class);
 });
 
 
