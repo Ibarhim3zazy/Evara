@@ -69,8 +69,8 @@ Products
                             <img width="50" src="{{ Storage::url($product->image) }}" alt="">
                         </td>
                         <td>
-                            <a href="{{ route('products.edit', $product->id) }}"
-                                class="btn btn-sm btn-secondary">Edit</a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-secondary"
+                                style="padding: 5px 20px;">Edit</a>
                             <a href="#" data-bs-toggle="modal" data-url="{{ route('products.destroy', $product->id) }}"
                                 data-bs-target="#delleteProductModal" class="btn btn-sm btn-danger delteBtn">Delete</a>
                         </td>

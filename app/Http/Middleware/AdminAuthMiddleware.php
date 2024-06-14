@@ -18,7 +18,7 @@ class AdminAuthMiddleware
 
         if(!auth()->check()) {
             return to_route('admin.login');
-        }   
+        }
 
         return $next($request);
     }

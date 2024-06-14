@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\BlogCategory;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
@@ -18,14 +19,20 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     'name' => fake('ar_JO')->name(),
+        //     'email' => fake()->email(),
         // ]);
 
-        Category::create([
-            'name' => 'Test Category'
-        ]);
+        // Category::create([
+        //     'name' => 'Test Category'
+        // ]);
 
-        Product::factory(100)->create();
+        // Product::factory(100)->create();
+
+        $this->call([
+            UserSeeder::class,
+            BlogCategorySeeder::class,
+            BlogSeeder::class,
+        ]);
     }
 }

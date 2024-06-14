@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,7 +39,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
-        $data['image'] = $request->image->store('products');
+        $data['image'] = $request->image->store('public/products');
         Product::create($data);
 
         //    $name = $request->image->getClientName();
@@ -77,7 +78,7 @@ class ProductController extends Controller
                 Storage::delete($product->image);
             }
 
-            $data['image'] = $request->image->store('products');
+            $data['image'] = $request->image->store('public/products');
         }
 
 
@@ -91,6 +92,11 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
+        $product = Product::findOrFail($id);
+        $imagePath = 'products' . $product->image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
         Product::where("id", $id)->delete();
         return redirect()->route('products.index');
     }
