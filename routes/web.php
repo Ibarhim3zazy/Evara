@@ -28,8 +28,8 @@ Route::prefix('evara')->group(function(){
         Route::resource('products', ProductController::class);
         Route::resource('categories', CategoryController::class);
     });
-
-    Route::middleware('user')->group(function(){
+    
+    Route::middleware('admin')->group(function(){
         // Route::get('/user', [HomeController::class, 'index'])->name('user.index');
         // Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::resource('blogs', BlogController::class);

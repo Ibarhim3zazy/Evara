@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BlogCategory extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }

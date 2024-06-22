@@ -23,11 +23,10 @@ Create Product
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('blogs.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('blogs.update', $blog->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @session('blogCreateStatus')
-                        <div class="alert-success alert">{{ session('blogCreateStatus') }}</div>
-                        @endsession
+                        @method('PUT')
+
                         <div class="row">
                             <div class="col-md-3">
                                 <h6>1. General info</h6>
@@ -35,8 +34,8 @@ Create Product
                             <div class="col-md-9">
                                 <div class="mb-4">
                                     <label class="form-label">Blog title</label>
-                                    <input type="text" name="title" value="{{ old('title') }}" placeholder="Type here"
-                                        class="form-control">
+                                    <input type="text" name="title" value="{{ old('title') ?? $blog->title }}"
+                                        placeholder="Type here" class="form-control">
                                     @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -44,7 +43,7 @@ Create Product
                                 <div class="mb-4">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" placeholder="Type here" class="form-control"
-                                        rows="4">{{ old('description') }}</textarea>
+                                        rows="4">{{ old('description') ?? $blog->description }}</textarea>
                                     @error('description')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -60,7 +59,7 @@ Create Product
                                 <div class="mb-4">
                                     @foreach ($blogCategories as $category)
                                     <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                        <input class="form-check-input" {{ $blogCategories->last()->id === $category->id
+                                        <input class="form-check-input" {{ $category->id === $blog->blog_category_id
                                         ?
                                         'checked' : '' }} name="blog_category_id"
                                         value="{{ $category->id }}" type="radio">

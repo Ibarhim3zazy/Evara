@@ -42,8 +42,6 @@ class ProductController extends Controller
         $data['image'] = $request->image->store('public/products');
         Product::create($data);
 
-        //    $name = $request->image->getClientName();
-
         return redirect()->route('products.index');
     }
 

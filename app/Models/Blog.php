@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Blog extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $guarded = [];
+
+    public function BlogCategory()
+    {
+        return $this->belongsTo(BlogCategory::class);
+    }
 }

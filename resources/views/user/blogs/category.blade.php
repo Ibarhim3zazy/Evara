@@ -203,9 +203,11 @@
                         @foreach ($blogs as $blog)
                         <article class="wow fadeIn animated hover-up mb-30">
                             <div class="post-thumb"
-                                style="background-image: url({{ asset('user/assets') }}/imgs/blog/blog-2.jpg);">
+                                style="background-image: url({{ asset('storage/images/blogs/'.$blog->image) }});">
                                 <div class="entry-meta">
-                                    <a class="entry-meta meta-2" href="blog-category-grid.html">Technology</a>
+                                    <a class="entry-meta meta-2"
+                                        href="{{ route('blogs.show', $blog->BlogCategory->id) }}">{{
+                                        $blog->BlogCategory->name }}</a>
                                 </div>
                             </div>
                             <div class="entry-content-2">
@@ -250,18 +252,12 @@
                             </div>
                             <div class="post-block-list post-module-1 post-module-5">
                                 <ul>
-                                    <li class="cat-item cat-item-2"><a href="blog-category-list.html">Beauty</a> (3)
+                                    @foreach ($blogCategories as $blogCategory)
+                                    <li class="cat-item cat-item-2"><a
+                                            href="{{ route('blogs.show', $blogCategory->id) }}">{{
+                                            $blogCategory->name }}</a> ({{ count($blogCategory->blogs) }})
                                     </li>
-                                    <li class="cat-item cat-item-3"><a href="blog-category-list.html">Book</a> (6)
-                                    </li>
-                                    <li class="cat-item cat-item-4"><a href="blog-category-list.html">Design</a> (4)
-                                    </li>
-                                    <li class="cat-item cat-item-5"><a href="blog-category-list.html">Fashion</a>
-                                        (3)</li>
-                                    <li class="cat-item cat-item-6"><a href="blog-category-list.html">Lifestyle</a>
-                                        (6)</li>
-                                    <li class="cat-item cat-item-7"><a href="blog-category-list.html">Travel</a> (2)
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

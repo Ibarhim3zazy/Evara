@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Blog;
+use App\Models\User;
 use App\Models\BlogCategory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +25,7 @@ class BlogFactory extends Factory
             'description' => fake()->sentence,
             'image' => fake()->imageUrl(),
             'blog_category_id' => BlogCategory::all()->random()->id,
+            'user_id' => User::all()->random()->id,
         ];
     }
 }
